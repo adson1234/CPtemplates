@@ -8,7 +8,7 @@ change a node val: O(log n)
 t.set(i)  //0<=i<n
 
 query sum of values in an interval: O(log n)
-t.prod(l,r) //
+t.prod(l,r) //query the sum of values in [l,r)
 
 problems:
 
