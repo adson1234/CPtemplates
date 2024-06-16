@@ -37,7 +37,7 @@ template <class S, S (*op)(S, S), S (*e)()> struct segtree {
         return d[p + size];
     }
 
-    S prod(int l, int r) const {
+    S prod(int l, int r) const {    //query the sum of values in [l,r)
         assert(0 <= l && l <= r && r <= _n);
         S sml = e(), smr = e();
         l += size;
