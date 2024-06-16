@@ -13,4 +13,5 @@ t.prod(l,r) //query the sum of values in [l,r)
 ```
 
 problems: 
-[3187. Peaks in Array]([https://github.com/wisdompeak/LeetCode/tree/master/Two_Pointers/016.3Sum-Closest](https://leetcode.com/problems/peaks-in-array/description/ )
+
+[3187.Peaks-in-Array](https://leetcode.com/problems/peaks-in-array/description/)
