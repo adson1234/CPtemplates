@@ -1,7 +1,7 @@
 
-How to use:
-build a segment tree: O(n)
-seg t(n);  // create tree of length n
+How to use:	
+build a segment tree: O(n)	
+seg t(n);  // create tree of length n	
 
 build a segment tree: O(n) 
 seg t(n);  // create tree of length n 
