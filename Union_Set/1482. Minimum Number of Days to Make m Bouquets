@@ -1,0 +1,67 @@
+class Solution {
+    vector<int> p;
+    vector<int> depth;
+
+    void Make_Set(int x){
+        p[x]=x;
+        depth[x]=0;
+    }
+
+    int Find_Set(int x){
+        if (p[x]!=x){
+            p[x]=Find_Set(p[x]);
+        }
+        return p[x];
+    }
+
+    void Union_Set(int x, int y){
+        x=Find_Set(x);
+        y=Find_Set(y);
+        if (depth[x]>depth[y]){
+            p[y]=x;
+        }else{
+            p[x]=y;
+            if (depth[x]==depth[y]) depth[y]++;
+        }
+    }
+
+    vector<int> sz;
+public:
+    int minDays(vector<int>& bloomDay, int m, int k) {
+        int n=bloomDay.size();
+        p.assign(n,-1);
+        depth.resize(n);
+        sz.resize(n);
+
+        vector<vector<int>> v;
+        for(int i=0;i<n;i++){
+            v.push_back({bloomDay[i],i});
+        }
+        sort(v.begin(),v.end());
+
+        int cur=0;
+        vector<bool> bloom(n,false);
+        for(int i=0;i<n;i++){
+            int x=v[i][1];
+            Make_Set(x);
+            bloom[x]=true;
+            int totalsz=0;
+            if (x-1>=0 && bloom[x-1]){
+                cur-=sz[Find_Set(x-1)]/k;
+                totalsz+=sz[Find_Set(x-1)];
+                Union_Set(x-1,x);
+            }
+            if (x+1<n && bloom[x+1]){
+                cur-=sz[Find_Set(x+1)]/k;
+                totalsz+=sz[Find_Set(x+1)];
+                Union_Set(x+1,x);
+            }
+            sz[Find_Set(x)]=totalsz+1;
+            cur+=sz[Find_Set(x)]/k;
+            if (cur>=m) return v[i][0];
+            //for(int j=0;j<n;j++) cout<<i<<" "<<sz[Find_Set(i)]<<" ";
+            //cout<<"\n";
+        }
+        return -1;
+    }
+};
